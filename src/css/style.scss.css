@@ -3597,6 +3597,11 @@ header nav .nav-item li.dropdown-submenu:hover>.dropdown-menu {
     font-size: 14px;
     line-height: 33px
 }
+.mid-footer .social_footer .follow_option li a .fab {
+    color: #fff;
+    font-size: 14px;
+    line-height: 33px
+}
 
 .mid-footer .social_footer .follow_option li a:hover {
     background-color: #333
@@ -3605,7 +3610,9 @@ header nav .nav-item li.dropdown-submenu:hover>.dropdown-menu {
 .mid-footer .social_footer .follow_option li a:hover .fa {
     color: #fff
 }
-
+.mid-footer .social_footer .follow_option li a:hover .fab {
+    color: rgb(245, 9, 9)
+}
 .mid-footer .social_footer .follow_option li:nth-child(1) a {
     background: #455b94
 }
