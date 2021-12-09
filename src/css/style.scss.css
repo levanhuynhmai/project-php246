@@ -10468,3 +10468,30 @@ body .bizweb-product-reviews-badge {
 .item_logo .img_ img {
  width: 100px;   
 }
+
+.products-view-grid .ae-total-review {
+    display: none;
+}
+.products-view-grid .ae-total-review-grid {
+    display: inline-block;
+    font-size: 12px;
+    color: #888;
+}
+
+.products-view-grid .aer-star-active svg, .products-view-grid .aer-star-active path
+{
+    fill: rgb(255, 193, 7);
+    width: 15px;
+    height: 15px;
+}
+.products-view-grid .aer-star-deactive svg, .products-view-grid .aer-star-deactive path {
+    fill: rgb(204, 204, 204);
+    width: 15px;
+    height: 15px;
+}
+.products-view-grid .aer-ordered svg, .products-view-grid .aer-ordered path {
+    fill: #52B858;
+}
+.products-view-grid .ae-total- {
+    display: none;
+} 
