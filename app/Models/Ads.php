@@ -137,4 +137,17 @@ class Ads extends Model
     {
         return base_url('banner/tracking/'.base64_encode($this->id));
     }
+
+    public function getFullImageUrlAttribute(): string
+    {
+        if ($this->image_id > 0) {
+            return asset('storage'.$this->image_url);
+        } else {
+            if (!empty($this->image_url)) {
+                return $this->image_url;
+            }
+        }
+
+        return asset('site/img/empty.svg');
+    }
 }

@@ -44,7 +44,9 @@ class SiteController extends Controller
         $this->data['manifest'] = $manifest;
 
        // load menu nav
-        $this->data['productCategory'] = ProductCategory::all();
+       $this->data['menuTop'] = Nav::menu('menu_top', 0);
+       $this->data['menuProduct'] = ProductCategory::menuproduct('', 0);
+
 
         $this->page_number = config('constant.PAGE_NUMBER');
     }
