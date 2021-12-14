@@ -10,6 +10,15 @@
         <div class="input-group mb-3">
             <input type="file" multiple="multiple" name="file_multi[]" class="form-control">
         </div>
+        <div class="input-group mb-3">
+            <input type="file" multiple="multiple" name="file_multi[]" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <input type="file" multiple="multiple" name="file_multi[]" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <input type="file" multiple="multiple" name="file_multi[]" class="form-control">
+        </div>
 
         <div class="preview-img">
             @if(!empty($value))

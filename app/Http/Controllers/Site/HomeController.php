@@ -18,22 +18,18 @@ final class HomeController extends SiteController
 {
     public function index(Request $request, $slugCategory = '')
     {
+        
 
-        // lay danh muc
-
-        // $productCategory = ProductCategory::all();
         $slider = Ads::query()->where('position', 'slider')->where('status', 1)->get();
-        $items = Product::all();
+        $items = Product::query()->where('status', Product::STATUS_ACTIVE)->get();
         $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
 
-
+     
         $data = [
-            // 'productCategory' => $productCategory,
             'slider' => $slider,
             'member' => $member,
             'items' => $items,
         ];
-        
         if (View::exists($this->layout . '.home.index')) {
             return view($this->layout . '.home.index', $this->render($data));
         } else {

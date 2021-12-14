@@ -15,7 +15,7 @@
         <div class="preview-img">
             <ul class="list-unstyled">
                 <li>
-                    <img src="@if(!empty($image_url)){{ asset($image_url) }}@endif"
+                    <img src="@if(!empty($image_url)){{ asset('storage'.$image_url) }}@endif"
                          class="img-table img-thumbnail"
                          id="pathPreviewSingle{{ $name }}"/>
 
