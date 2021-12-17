@@ -25,7 +25,7 @@ class Member extends Authenticatable
     public const GENDER_OTHER = 2; // khong xac dinh
 
     public const STATUS_ACTIVE = 1;
-    public const STATUS_WAITING_ACTIVE = 1;
+    public const STATUS_WAITING_ACTIVE = 3;
     public const STATUS_BLOCK = 5;
     public const STATUS_LIST = [
         self::STATUS_ACTIVE,

@@ -29,12 +29,12 @@
                             <button class="g-recaptcha btn btn-block"
                                     data-sitekey="{{ config('services.recaptcha.site_key') }}"
                                     data-callback='onSubmit'
-                                    data-action='submit' style="background-color:#fdab3a; color:#fff">
+                                    data-action='submit' style="background-color:#008744;; color:#fff">
                                 <i class="fa fa-pencil"></i>
                                 Register
                             </button>
                         @else
-                            <button class="btn btn-block" style="background-color:#fdab3a; color:#fff">
+                            <button class="btn btn-block" style="background-color:#008744;; color:#fff">
                                 <i class="fa fa-pencil"></i>
                                 Register
                             </button>

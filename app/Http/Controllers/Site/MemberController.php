@@ -182,7 +182,7 @@ final class MemberController extends SiteController
             if (empty($member)) {
                 $member = $this->memberService->create($params);
             } else {
-                $params['status'] = Member::STATUS_ACTIVE;
+                $params['status'] = Member::STATUS_WAITING_ACTIVE;
                 $params['password'] = Hash::make($params['password']);
                 $this->memberService->update($member->id, $params);
             }

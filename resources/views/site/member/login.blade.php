@@ -37,7 +37,7 @@
                                 Login
                             </button>
                         @else
-                            <button class="btn btn-block" style="background-color:#fdab3a; color:#fff">
+                            <button class="btn btn-block" style="background-color:#008744; color:#fff">
                                 <i class="fa fa-sign-in"></i>
                                 Login
                             </button>
@@ -53,7 +53,10 @@
                     </div>
                 </form>
                 <div class="loginbox-signup">
-                    <a href="{{ base_url('member/register') }}">Sign Up With Email</a>
+                    <a href="{{ base_url('member/register') }}">Register</a>
+                </div>
+                <div class="loginbox-signup">
+                    <a href="">Sign Up With Email</a>
                 </div>
         </div>
         <div class="logobox text-center">

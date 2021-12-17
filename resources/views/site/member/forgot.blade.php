@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="loginbox-submit">
-                    <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                    <input type="submit" class="btn btn-block" style="background-color:#008744;" value="Submit">
                 </div>
 
                 <div class="loginbox-textbox">

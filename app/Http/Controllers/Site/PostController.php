@@ -36,15 +36,22 @@ final class PostController extends SiteController
             // set seo
             $this->seo($postCategory, $this->data);
         } else {
-            $items = Post::active()->with(['comment'])->orderByDesc('id')->paginate($this->page_number);
-            $this->data['title'] = $this->data['config']['company_name'];
+            $items = Post::active()->with(['comment'])->orderByDesc('id')->paginate(8);
+            // $this->data['title'] = $this->data['config']['company_name'];
         }
 
-        // update view
+        $itemView = Post::query()
+            ->where('status', Post::STATUS_ACTIVE)
+            ->orderByDesc('views')
+            ->limit(6)
+            ->get();
+
+       
         $data = [
             'postCategory' => $postCategory,
             'items' => $items,
             'slugCategory' => $slugCategory,
+            'itemView' => $itemView,
         ];
 
         return view($this->layout . 'post.index', $this->render($data));
@@ -95,63 +102,5 @@ final class PostController extends SiteController
         return view($this->layout . 'post.view', $this->render($data));
     }
 
-    public function show($slugPost)
-    {
-        $post = Post::query()->whereTranslation('slug', $slugPost)->first();
-
-        if (empty($post)) {
-            return redirect(base_url('404.html'));
-        }
-
-        // rating
-        if (Auth::guard(RolePermission::GUARD_NAME_WEB)->check()) {
-            $rating = new Rating;
-            $rating->rating = 3;
-            $rating->member_id = auth(RolePermission::GUARD_NAME_WEB)->id();
-            $post->ratings()->save($rating);
-        }
-
-        // update view
-        Post::query()->where('id', $post->id)->increment('views');
-
-        $items = Post::query()->where(['category_id' => $post->category_id])->orderByDesc('id')->paginate(
-            $this->page_number
-        );
-
-        // check bookmark
-        $isBookmark = 0;
-        if (!empty(auth(RolePermission::GUARD_NAME_WEB)->check())) {
-            $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
-            $isBookmark = $member->isBookmarked($post);
-        }
-
-        $data = [
-            'title' => $post->title,
-            'post' => $post,
-            'isBookmark' => $isBookmark,
-            'items' => $items,
-        ];
-
-        // set seo
-        $this->seo($post, $this->data);
-
-        return view($this->layout . 'post.view', $this->render($data));
-    }
-
-    public function postBookmark(Request $request)
-    {
-        if (!auth(RolePermission::GUARD_NAME_WEB)->check()) {
-            return redirect(base_url('member'));
-        }
-
-        $postId = $request->input('post_id');
-        $object = Post::query()->where('id', $postId)->first();
-        if (!empty($object->id)) {
-            // bookmark
-            $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
-            $member->bookmark($object); // bookmark or unbookmark
-        }
-
-        return back()->withInput();
-    }
+    
 }
