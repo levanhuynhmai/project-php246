@@ -58,6 +58,7 @@ Route::namespace('Site')->group(
                         Route::get('member/change-password', 'MemberController@changePassword');
                         Route::post('member/change-password', 'MemberController@handleChangePassword');
                         Route::get('member/my-bookmark-posts', 'MemberController@myBookmarkPost');
+                        Route::get('member/oder', 'MemberController@oder');
 
                         Route::get('member/notifications', 'MemberController@notifications');
                         Route::get('member/notification/show/{id}', 'MemberController@notificationDetail');

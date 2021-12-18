@@ -38,39 +38,6 @@
             </div>
 
             <div class="mb-3">
-                <label class="col-form-label" for="image_url">
-                    <i class="fa fa-image" aria-hidden="true"></i> {{ trans('common.image_url') }}
-
-                    <span class="text-sm-left text-warning">
-                        (File max size upload {{ @config('constant.MAX_FILE_SIZE_UPLOAD') }} pixel)
-                    </span>
-                </label>
-
-                <input type="file" onchange="previewImage(event, 'pathPreviewSingle_image_url')"
-                       name="file" class="file-uploader form-control" style="width: 100%">
-
-                @if(!empty($member->image_url))
-                    @if(!empty($member->image_id > 0))
-                        <img class="img-circle img-responsive" id="pathPreviewSingle_image_url"
-                             style="width: 64px; height: 64px"
-                             src="{{ asset('storage'.$member->image_url) }}" alt="avatar">
-                    @else
-                        <img class="img-circle img-responsive" id="pathPreviewSingle_image_url"
-                             style="width: 64px; height: 64px"
-                             src="{{ $member->image_url }}" alt="avatar">
-                    @endif
-
-                    <div class="mb-3">
-                        <label class="text-danger pull-right">
-                            <input type="checkbox" value="{{ $member->image_id }}" name="file_remove">
-                            <i class="fa fa-trash"></i>
-                        </label>
-                    </div>
-                @endif
-
-            </div>
-
-            <div class="mb-3">
                 <button class="btn btn-primary" type="submit"><i class="fa fa-save" aria-hidden="true"></i> Update Profile</button>
 
                 <div class="loginbox-textbox">

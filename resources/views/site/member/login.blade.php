@@ -60,7 +60,7 @@
                 </div>
         </div>
         <div class="logobox text-center">
-            <a href="{{base_url()}}"><i class="fa fa-home"></i> {{trans('common.home')}}</a>
+            <a href="{{base_url('/')}}"><i class="fa fa-home"></i> {{trans('common.home')}}</a>
         </div>
     </div>
 @endsection

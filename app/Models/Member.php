@@ -184,4 +184,6 @@ class Member extends Authenticatable
     {
         return $this->morphMany(Notification::class, 'notifiable')->orderBy('created_at', 'desc');
     }
+
+   
 }

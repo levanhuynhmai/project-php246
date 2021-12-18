@@ -27,6 +27,8 @@ final class PostController extends SiteController
     public function index(Request $request, $slugCategory = null)
     {
         $this->postService->buildCondition($request->all(), $condition, $sortBy, $sortType);
+        $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
+
 
         $postCategory = PostCategory::query()->where('slug', $slugCategory)->first();
         if (!empty($postCategory->id)) {
@@ -52,6 +54,7 @@ final class PostController extends SiteController
             'items' => $items,
             'slugCategory' => $slugCategory,
             'itemView' => $itemView,
+            'member' => $member,
         ];
 
         return view($this->layout . 'post.index', $this->render($data));
@@ -60,6 +63,8 @@ final class PostController extends SiteController
     public function view($slugCategory, $slugPost)
     {
         $post = Post::query()->with(['comment'])->whereTranslation('slug', $slugPost)->first();
+        $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
+
 
         if (empty($post)) {
             return redirect(base_url('404.html'));
@@ -94,6 +99,7 @@ final class PostController extends SiteController
             'post' => $post,
             'isBookmark' => $isBookmark,
             'items' => $items,
+            'member' => $member,
         ];
 
         // set seo

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Site;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use App\Models\Member;
+use App\Models\RolePermission;
 
 final class PageController extends SiteController
 {
@@ -15,6 +17,8 @@ final class PageController extends SiteController
     public function view(Request $request, $slug)
     {
         $page = Page::query()->where('slug', $slug)->first();
+        $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
+
 
         if (empty($page)) {
             return redirect(base_url('404.html'));
@@ -23,6 +27,7 @@ final class PageController extends SiteController
         $data = [
             'title' => $page->title,
             'page' => $page,
+            'member' => $member,
         ];
 
         return view($this->layout . 'page.view', $this->render($data));

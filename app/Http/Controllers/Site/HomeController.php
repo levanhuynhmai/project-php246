@@ -17,8 +17,7 @@ use App\Models\RolePermission;
 final class HomeController extends SiteController
 {
     public function index(Request $request, $slugCategory = '')
-    {
-        
+    {   
 
         $slider = Ads::query()->where('position', 'slider')->where('status', 1)->get();
         $banner_home_1 = Ads::query()->where('position', 'banner_home_1')->where('status', 1)->first();

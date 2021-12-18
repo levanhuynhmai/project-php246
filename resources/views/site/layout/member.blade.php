@@ -62,6 +62,13 @@
                                 <i class="fa fa-info-circle" aria-hidden="true"></i> Profile
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(!empty($active_menu) && $active_menu == 'member/oder') active @endif"
+                               href="{{ base_url('member/oder') }}">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order
+
+                            </a>
+                        </li>
 
                         @if(!empty($manifest['nav_site']) && isset(auth('web')->user()->member_type))
                             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">

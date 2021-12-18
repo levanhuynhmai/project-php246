@@ -117,7 +117,8 @@ final class MemberController extends SiteController
                 if ($request->get('redirect')) {
                     return redirect($request->get('redirect'));
                 } else {
-                    return redirect(base_url('member/dashboard'));
+                    $request->session()->flash('success', trans('common.login.success'));
+                    return redirect(base_url('/'));
                 }
             } else {
                 $request->session()->flash('error', trans('member.error_member_not_exist'));
@@ -329,7 +330,7 @@ final class MemberController extends SiteController
                 $request->session()->flash('error', trans('member.error_member_not_exist'));
             }
         } else {
-            $request->session()->flash('error', trans('member.active.error'));
+            $request->session()->flash('error', trans('member.active.success'));
         }
 
         return redirect(base_url('member/login'));
@@ -522,6 +523,18 @@ final class MemberController extends SiteController
         ];
 
         $view = $this->memberService->renderView($this->theme, 'site.member.my_bookmark');
+        return view($view, $this->render($data));
+    }
+
+    public function oder()
+    {
+        $items = \Cart::getContent();
+
+        $data = [
+            'items' => $items,
+            'title' => 'Oder',
+        ];
+        $view = $this->memberService->renderView($this->theme, 'site.member.oder');
         return view($view, $this->render($data));
     }
 
