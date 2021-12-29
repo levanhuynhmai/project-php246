@@ -45,6 +45,7 @@ class SiteController extends Controller
 
        // load menu nav
        $this->data['menuTop'] = Nav::menu('menu_top', 0);
+       $this->data['menuBottom'] = Nav::menu('menu_bottom', 0);
        $this->data['menuProduct'] = ProductCategory::menuproduct('', 0);
 
 

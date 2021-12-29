@@ -23,7 +23,7 @@
         <div class="form-group">
             <label style="color: #000" class="label" for="author">{{ trans('common.fullname') }} (*)</label>
             <input type="text" class="form-control" autocomplete="off" name="author" id="author"
-                   value="{{ old('author', auth('web')->user()->first_name ?? '') }}">
+                   value="{{ old('author', auth('web')->user()->fullname ?? '') }}">
         </div>
 
         <div class="form-group" style="margin-top: 10px">

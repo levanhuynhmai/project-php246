@@ -14,6 +14,8 @@ use App\Services\MediaService;
 use App\Services\MemberService;
 use App\Services\PostService;
 use Exception;
+use TinhPHP\Woocommerce\Models\SaleOrder;
+use TinhPHP\Woocommerce\Services\SaleOrderService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,6 +23,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Laravel\Socialite\Facades\Socialite;
+
 
 /**
  * Class MemberController.
@@ -526,16 +529,31 @@ final class MemberController extends SiteController
         return view($view, $this->render($data));
     }
 
-    public function oder()
+    public function oder(Request $request)
     {
-        $items = \Cart::getContent();
+
+        $items = SaleOrder::query()->where('member_id',auth(RolePermission::GUARD_NAME_WEB)->id())->get();
+
 
         $data = [
-            'items' => $items,
+            'member' => auth(RolePermission::GUARD_NAME_WEB)->user(),
+            'active_menu' => 'oder',
             'title' => 'Oder',
+            'items' => $items,
         ];
         $view = $this->memberService->renderView($this->theme, 'site.member.oder');
         return view($view, $this->render($data));
+    }
+    
+    public function show($id)
+    {
+        $myObject = SaleOrder::query()->findOrFail($id);
+        $data = [
+            'saleOrder' => $myObject,
+            'title' => trans('lang_woocommerce::sale_order.code') . ' #' . $myObject->code,
+        ];
+
+        return view('site.member.odershow', $this->render($data));
     }
 
 }

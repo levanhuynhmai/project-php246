@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(!empty($active_menu) && $active_menu == 'member/oder') active @endif"
+                            <a class="nav-link @if(!empty($active_menu) && $active_menu == 'oder') active @endif"
                                href="{{ base_url('member/oder') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order
 
