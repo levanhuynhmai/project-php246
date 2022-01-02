@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Site\MediaController;
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\NewsLetterController;
 use App\Models\Plugin;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,10 @@ Route::namespace('Site')->group(
         }
 
         // user
-        Route::get('users/activemail', 'UserController@activeMail');
+        Route::get('users/activemail', 'UserController@activeMail');   
+        
+        Route::post('newsletter', 'NewsLetterController@check');
+
 
         // member
         Route::middleware(['config.member.login'])->group(
@@ -91,6 +95,7 @@ Route::namespace('Site')->group(
         // contact
         Route::post('contact/register-email', 'ContactController@registerEmail');
         Route::post('contact', 'ContactController@addContact');
+        Route::get('contact', 'ContactController@index');
         Route::post('contact_submit', 'ContactController@addContactAjax');
 
         // comment

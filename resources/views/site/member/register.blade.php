@@ -50,7 +50,7 @@
                     </div>
                 </form>
                 <div class="loginbox-signup">
-                    <a href="{{ base_url('member/login') }}">Sign In With Email</a>
+                    <a href="{{ base_url('member/login') }}">Sign In Website</a>
                 </div>
             
 

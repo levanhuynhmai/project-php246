@@ -8,6 +8,8 @@ use App\Services\ContactFormService;
 use App\Services\ContactService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Member;
+use App\Models\RolePermission;
 
 /**
  * Class ContactController.
@@ -31,6 +33,16 @@ final class ContactController extends SiteController
      * @param Request $request
      * @return RedirectResponse
      */
+    public function index(){
+        $member = Member::query()->where('id', auth(RolePermission::GUARD_NAME_WEB)->id())->first();
+
+        $data = [
+            'title' => "Liên hệ",
+            'member' => $member,
+        ];
+
+        return view($this->layout . '.contact.index', $this->render($data));
+    }
     public function registerEmail(Request $request)
     {
         $params = $request->only('email');

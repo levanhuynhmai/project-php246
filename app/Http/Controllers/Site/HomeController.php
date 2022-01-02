@@ -19,6 +19,7 @@ final class HomeController extends SiteController
     public function index(Request $request, $slugCategory = '')
     {   
 
+        //sider and banner
         $slider = Ads::query()->where('position', 'slider')->where('status', 1)->get();
         $banner_home_1 = Ads::query()->where('position', 'banner_home_1')->where('status', 1)->first();
         $banner_home_2 = Ads::query()->where('position', 'banner_home_2')->where('status', 1)->first();
@@ -76,9 +77,11 @@ final class HomeController extends SiteController
         $categoryIdsThe[]  = $categoryThe->id;
         $itemsThe = Product::query()->whereIn('category_id', $categoryIdsThe)->get();
 
-        // $items = Product::query()->where('status', Product::STATUS_ACTIVE)->get();
-
+        $itemView = Product::query()->where('status', Product::STATUS_ACTIVE)
+                ->orderByDesc('views')->get();
+    
         $data = [
+            'itemView' => $itemView,
             'member' => $member,
             'categoryLaptop' => $categoryLaptop,
             'itemsLaptop' => $itemsLaptop,
@@ -113,8 +116,6 @@ final class HomeController extends SiteController
             "banner_working_2" => $banner_working_2,
             
         ];
-      
-
         if (View::exists($this->layout . '.home.index')) {
             return view($this->layout . '.home.index', $this->render($data));
         } else {

@@ -8,6 +8,6 @@
     </div>
     <div class="ml-auto">
         <span>Powered by</span>
-        <a target="_blank" href="#">HM</a>
+        <a href="#">HM</a>
     </div>
 </footer>
